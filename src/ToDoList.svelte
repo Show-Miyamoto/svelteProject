@@ -1,18 +1,15 @@
 <script>
-    let toDoItems = [
-        {text: "trush out the garbage"},
-        {text: "learn proguraming_language"},
-        {text: 'Contact a friend'},
-    ];
+    import { toDoItems } from "./store.js"
 
-function removeFromList(i) {
-    toDoItems.splice(i, 1)
-    toDoItems = toDoItems
-}
+    // Auto subscribe used
+    function removeFromList(i) {
+        $toDoItems.splice(i, 1)
+        $toDoItems = $toDoItems
+    }
 </script>
 
-{#each toDoItems as item, index}
-    <div class="toDoItem">
+{#each $toDoItems as item, index}
+    <div class="toDoItems">
         <input bind:checked={item.status} type="checkbox">
         <span class:checked={item.status}>{item.text}</span>
         <button on:click={() => removeFromList(index)}>削除</button>
