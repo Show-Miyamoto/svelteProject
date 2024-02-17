@@ -8,6 +8,12 @@
 	let firstName = ""
 
 	$: fullName = lastName + " " + firstName
+
+	function handleSubmit() {
+		if (lastName && firstName) {
+		nameEntered = true
+		}
+	}
 </script>
 
 <main>
@@ -18,12 +24,15 @@
 {:else}
 	<h1>タスクリストアプリケーションへようこそ！！</h1>
 	<h3>名前を入力してください</h3>
+	<form on:submit|preventDefault={handleSubmit}>
 	<div>
 		<input bind:value={lastName} type="text" placeholder="姓" required>
 	</div>
 	<div>
 		<input bind:value={firstName} type="text" placeholder="名" required>
 	</div>
+	<button type="submit">タスク管理を始める</button>
+	</form>
 {/if}
 </main>
 
