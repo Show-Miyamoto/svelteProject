@@ -1,5 +1,6 @@
 <script>
     import { toDoItems } from "./store.js"
+    import { fade, scale } from "svelte/transition"
 
     // Auto subscribe used
     function removeFromList(i) {
@@ -9,7 +10,7 @@
 </script>
 
 {#each $toDoItems as item, index}
-    <div class="toDoItems">
+    <div class="toDoItems" in:scale out:fade="{{ duration: 1000 }}">
         <input bind:checked={item.status} type="checkbox">
         <span class:checked={item.status}>{item.text}</span>
         <button on:click={() => removeFromList(index)}>削除</button>
